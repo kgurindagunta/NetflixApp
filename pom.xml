@@ -16,9 +16,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <docker.image.prefix>kammana</docker.image.prefix>
         <junit.jupiter.version>5.10.0</junit.jupiter.version>
-        <fabric8.plugin.version>0.45.0</fabric8.plugin.version>
+
     </properties>
 
     <dependencies>
@@ -72,31 +71,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Fabric8 Docker plugin -->
-            <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>${fabric8.plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>build-image</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <images>
-                        <image>
-                            <name>${docker.image.prefix}/${project.artifactId}:${project.version}</name>
-                            <build>
-                                <dockerFile>${project.basedir}/Dockerfile</dockerFile>
-                            </build>
-                        </image>
-                    </images>
-                </configuration>
-            </plugin>
 
             <!-- Surefire plugin for JUnit 5 -->
             <plugin>
